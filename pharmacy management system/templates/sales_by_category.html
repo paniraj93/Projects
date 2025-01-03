@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales by Category</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Sales by Category</h1>
+        <div class="card">
+            <div class="card-header">
+                <h4>Sales Distribution</h4>
+            </div>
+            <div class="card-body">
+                <!-- Render pie chart here -->
+                {{ pie_chart_html|safe }}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
