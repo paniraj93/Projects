@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .cart-table th, .cart-table td {
+            text-align: center;
+        }
+        .cart-table th {
+            background-color: #f8f9fa;
+        }
+        .cart-total {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Checkout</h1>
+
+        {% if cart_items %}
+            <table class="table table-bordered cart-table mt-4">
+                <thead>
+                    <tr>
+                        <th>Medicine Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                        <tr>
+                            <td>{{ item['name'] }}</td>
+                            <td>₹{{ item['price'] }}</td>
+                            <td>{{ item['quantity'] }}</td>
+                            <td>₹{{ item['subtotal'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="cart-total text-right">
+                <p>Total: ₹{{ total }}</p>
+            </div>
+
+            <form action="{{ url_for('checkout') }}" method="POST">
+                <div class="text-right">
+                    <button type="submit" class="btn btn-success">Place Order</button>
+                </div>
+            </form>
+        {% else %}
+            <p>Your cart is empty. Please add items to your cart before proceeding to checkout.</p>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
